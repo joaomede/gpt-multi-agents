@@ -9,11 +9,12 @@ This project builds a multi-agent contextual chatroom. Follow these guidelines w
 - The Vue 3 front-end is located in `frontend/` and bootstrapped with Vite 4 for compatibility with the Vuetify plugin. Vuetify provides styling and the OpenAI client library handles completions.
 - A GitHub Actions workflow (`.github/workflows/deploy.yml`) deploys the front-end to GitHub Pages for every commit pushed to a pull request.
 
-Agent JSON files must include a `name`, `specialization`, `base_prompt` and `model` field. The front-end UI allows users to add, edit or delete these agent personas at runtime.
+Agent JSON files must include a `name`, `specialization`, `base_prompt` and `model` field. The `model` value is chosen from a predefined list in the Agent Editor. Supported options include `gpt-4o`, `gpt-4.1`, `o1-pro` and others. The front-end UI allows users to add, edit or delete these agent personas at runtime.
 
 ## Architecture Notes
 
 - A single chatroom interface allows the user to select which agent responds.
+- A single chatroom interface fills the browser viewport and scrolls as needed.
 - Every agent sees the full conversation history to maintain context.
 - Messages display the agent name, specialization and content.
 - The UI offers a numeric control to limit how many recent message blocks are
@@ -25,5 +26,7 @@ Agent JSON files must include a `name`, `specialization`, `base_prompt` and `mod
   See `examples/example_conversation.json` for the expected format.
   - The front-end is powered by Vue 3 and Vite 4 (see the `frontend/` directory).
 - Vuetify components provide the UI with the following structure: `ChatRoom`,
-  `AgentSelector`, `MessageList`, `AgentEditor` and `SettingsPanel`.
+  `AgentSelector`, `MessageList`, `AgentEditor`, `SettingsPanel` and `ApiKeyDialog`.
+  Agent management, settings and API key editing are presented in dialogs opened
+  from icons in the chatroom header so the interface stays uncluttered.
 

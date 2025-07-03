@@ -13,12 +13,16 @@ This history allows every reply to remain context aware and continuous.
 
 The application exposes a single chatroom interface. A user selects which agent
 should respond via a dropdown or similar selector. Each response shows the
-agent name, its specialization and the message content. All agents can see the
+agent name, its specialization and the message content. The chatroom fills the
+entire page and the message list scrolls as the conversation grows. All agents can see the
 entire conversation history so they can provide contextual answers.
 
 Users may also manage agents through the front-end UI. New personas can be
 added or existing ones edited and deleted without restarting the application.
 Each agent definition includes a base prompt describing how it should behave.
+Agent management and other settings are hidden behind icons in the chatroom
+header. Clicking the gear icon opens a dialog with history settings, while the
+account icon opens a dialog to edit agents.
 
 To keep conversations concise, the UI exposes a numeric control that limits the
 amount of history sent to the LLM. Only the last *N* message blocks (user
@@ -46,14 +50,17 @@ The UI is composed of several Vue components:
 
 Agent personas are defined as JSON files stored in the `agents/` directory. Each
 file must provide a `name`, a `specialization` describing the agent's
-expertise, a `base_prompt` that sets its persona and a `model` field. Example:
+expertise, a `base_prompt` that sets its persona and a `model` field. The model
+is selected from a predefined list available in the Agent Editor. Supported
+models include `gpt-4o`, `gpt-4.1`, `o1-pro` and many others.
+Example:
 
 ```json
 {
   "name": "HelperBot",
   "specialization": "general knowledge",
   "base_prompt": "You are a friendly assistant who answers briefly.",
-  "model": "gpt-3.5-turbo"
+  "model": "gpt-4o"
 }
 ```
 
@@ -100,7 +107,7 @@ This launches the app at `http://localhost:5173` by default.
 
 ### Configuring OpenAI Access
 
-The chatroom uses the OpenAI API to generate agent responses. Provide your API key by storing it in `localStorage` under the key `openai_api_key` before interacting with the chatroom. The key is persisted locally so you only need to set it once.
+The chatroom uses the OpenAI API to generate agent responses. A key icon in the interface opens a dialog where you can enter or update your API key. The value is persisted in `localStorage` under the key `openai_api_key`.
 
 ## Running Tests
 
