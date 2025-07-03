@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -23,8 +24,25 @@ jobs:
           cd frontend
           npm run build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GH_TOKEN }} # use PAT aqui
-          publish_dir: ./frontend/dist
+          path: ./frontend/dist
+
+  # Deploy job
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write      # Permite deploy no GitHub Pages
+      id-token: write   # Verifica a identidade do ambiente de execução
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
