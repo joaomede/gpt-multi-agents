@@ -21,9 +21,10 @@ entire conversation history so they can provide contextual answers.
 Users may also manage agents through the front-end UI. New personas can be
 added or existing ones edited and deleted without restarting the application.
 Each agent definition includes a base prompt describing how it should behave.
-Agent management and other settings are hidden behind icons in the chatroom
-header. Clicking the gear icon opens a dialog with history settings, while the
-account icon opens a dialog to edit agents.
+Agent management and other settings are accessed from buttons in a left sidebar
+that also contains the agent selector. The sidebar takes up one third of the
+page width. Buttons open dialogs for history settings, agent editing and API
+key configuration.
 
 To keep conversations concise, the UI exposes a numeric control that limits the
 amount of history sent to the LLM. Only the last *N* message blocks (user
@@ -110,7 +111,7 @@ This launches the app at `http://localhost:5173` by default.
 
 ### Configuring OpenAI Access
 
-The chatroom uses the OpenAI API to generate agent responses. A key icon in the interface opens a dialog where you can enter or update your API key. The value is persisted in `localStorage` under the key `openai_api_key`.
+The chatroom uses the OpenAI API to generate agent responses. A button with a key icon in the sidebar opens a dialog where you can enter or update your API key. The value is persisted in `localStorage` under the key `openai_api_key`.
 
 ## Running Tests
 

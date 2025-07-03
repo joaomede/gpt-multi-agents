@@ -1,6 +1,7 @@
 <template>
   <v-select
     class="w-100"
+    rounded="lg"
     :items="agents"
     item-title="name"
     return-object

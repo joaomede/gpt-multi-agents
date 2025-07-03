@@ -4,17 +4,17 @@
     <v-list>
       <v-list-item v-for="(agent, i) in list" :key="i">
         {{ agent.name }} - {{ agent.specialization }}
-        <v-btn icon="mdi-pencil" size="x-small" class="mr-1" @click="edit(i)"></v-btn>
-        <v-btn icon="mdi-delete" size="x-small" @click="remove(i)"></v-btn>
+        <v-btn icon="mdi-pencil" size="x-small" class="mr-1" rounded="lg" @click="edit(i)"></v-btn>
+        <v-btn icon="mdi-delete" size="x-small" rounded="lg" @click="remove(i)"></v-btn>
       </v-list-item>
     </v-list>
-    <v-text-field v-model="name" label="Name" class="w-100 mb-2" />
-    <v-text-field v-model="specialization" label="Specialization" class="w-100 mb-2" />
-    <v-textarea v-model="prompt" label="Base Prompt" class="w-100 mb-2" />
-    <v-select v-model="model" :items="models" label="Model" class="w-100 mb-2" />
+    <v-text-field v-model="name" label="Name" class="w-100 mb-2" rounded="lg" />
+    <v-text-field v-model="specialization" label="Specialization" class="w-100 mb-2" rounded="lg" />
+    <v-textarea v-model="prompt" label="Base Prompt" class="w-100 mb-2" rounded="lg" />
+    <v-select v-model="model" :items="models" label="Model" class="w-100 mb-2" rounded="lg" />
     <div class="d-flex gap-2">
-      <v-btn color="primary" @click="save">{{ editingIndex >= 0 ? 'Save Agent' : 'Add Agent' }}</v-btn>
-      <v-btn v-if="editingIndex >= 0" @click="cancelEdit">Cancel</v-btn>
+      <v-btn color="primary" rounded="lg" @click="save">{{ editingIndex >= 0 ? 'Save Agent' : 'Add Agent' }}</v-btn>
+      <v-btn v-if="editingIndex >= 0" rounded="lg" @click="cancelEdit">Cancel</v-btn>
     </div>
   </div>
 </template>

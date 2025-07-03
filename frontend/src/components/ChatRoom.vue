@@ -1,23 +1,53 @@
 <template>
-  <v-container fluid class="fill-height d-flex flex-column pa-2 chat-bg">
-    <div class="d-flex align-center mb-2">
-      <AgentSelector :agents="agents" v-model="selectedAgent" class="flex-grow-1" />
-      <v-btn icon="mdi-key" @click="apiKeyDialog = true"></v-btn>
-      <v-btn icon="mdi-cog" @click="settingsDialog = true"></v-btn>
-      <v-btn icon="mdi-account-cog" @click="agentDialog = true"></v-btn>
-    </div>
-    <div class="flex-grow-1 overflow-auto mb-2" ref="msgContainer">
-      <MessageList :messages="messages" />
-    </div>
-    <div class="d-flex mt-2">
-      <v-text-field
-        v-model="newMessage"
-        label="Your question"
-        class="flex-grow-1 w-100 mr-2"
-        @keyup.enter="sendMessage"
-      />
-      <v-btn color="primary" class="send-btn" @click="sendMessage">Send</v-btn>
-    </div>
+  <v-container fluid class="fill-height pa-2 chat-bg">
+    <v-row class="fill-height">
+      <v-col cols="4" class="d-flex flex-column pa-2">
+        <AgentSelector
+          :agents="agents"
+          v-model="selectedAgent"
+          class="mb-2"
+          rounded="lg"
+        />
+        <v-btn
+          block
+          class="mb-2"
+          prepend-icon="mdi-key"
+          rounded="lg"
+          @click="apiKeyDialog = true"
+        >API Key</v-btn>
+        <v-btn
+          block
+          class="mb-2"
+          prepend-icon="mdi-cog"
+          rounded="lg"
+          @click="settingsDialog = true"
+        >Settings</v-btn>
+        <v-btn
+          block
+          class="mb-2"
+          prepend-icon="mdi-account-cog"
+          rounded="lg"
+          @click="agentDialog = true"
+        >Agents</v-btn>
+      </v-col>
+      <v-col cols="8" class="d-flex flex-column pa-2">
+        <div class="flex-grow-1 overflow-auto mb-2" ref="msgContainer">
+          <MessageList :messages="messages" />
+        </div>
+        <div class="d-flex mt-2">
+          <v-textarea
+            v-model="newMessage"
+            label="Your question"
+            class="flex-grow-1 w-100 mr-2"
+            auto-grow
+            rows="1"
+            rounded="lg"
+            @keydown.enter.exact.prevent="sendMessage"
+          />
+          <v-btn color="primary" class="send-btn" rounded="lg" @click="sendMessage">Send</v-btn>
+        </div>
+      </v-col>
+    </v-row>
 
     <v-dialog v-model="settingsDialog" width="400">
       <v-card>
