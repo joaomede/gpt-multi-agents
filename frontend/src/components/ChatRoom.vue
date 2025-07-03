@@ -1,21 +1,39 @@
 <template>
-  <v-container>
-    <AgentSelector :agents="agents" v-model="selectedAgent" />
-    <MessageList :messages="messages" />
-    <v-text-field v-model="newMessage" label="Your question" />
-    <v-btn color="primary" @click="sendMessage">Send</v-btn>
-    <SettingsPanel v-model:history-size="historySize" />
-    <AgentEditor :agents="agents" @update="saveAgents" />
+  <v-container class="fill-height d-flex flex-column">
+    <div class="d-flex align-center mb-2">
+      <AgentSelector :agents="agents" v-model="selectedAgent" class="flex-grow-1" />
+      <v-btn icon="mdi-key" @click="apiKeyDialog = true"></v-btn>
+      <v-btn icon="mdi-cog" @click="settingsDialog = true"></v-btn>
+      <v-btn icon="mdi-account-cog" @click="agentDialog = true"></v-btn>
+    </div>
+    <div class="flex-grow-1 overflow-auto" ref="msgContainer">
+      <MessageList :messages="messages" />
+    </div>
+    <div class="d-flex mt-2">
+      <v-text-field v-model="newMessage" label="Your question" class="flex-grow-1" @keyup.enter="sendMessage" />
+      <v-btn color="primary" @click="sendMessage">Send</v-btn>
+    </div>
+
+    <v-dialog v-model="settingsDialog" width="400">
+      <SettingsPanel v-model:history-size="historySize" />
+    </v-dialog>
+    <v-dialog v-model="agentDialog" width="600">
+      <AgentEditor :agents="agents" @update="saveAgents" />
+    </v-dialog>
+    <v-dialog v-model="apiKeyDialog" width="400">
+      <ApiKeyDialog v-model="apiKey" @close="apiKeyDialog = false" />
+    </v-dialog>
   </v-container>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import { callOpenAI } from '../openai.js'
 import AgentSelector from './AgentSelector.vue'
 import MessageList from './MessageList.vue'
 import AgentEditor from './AgentEditor.vue'
 import SettingsPanel from './SettingsPanel.vue'
+import ApiKeyDialog from './ApiKeyDialog.vue'
 
 const props = {}
 
@@ -25,6 +43,10 @@ const selectedAgent = ref(null)
 const historySize = ref(5)
 const newMessage = ref('')
 const apiKey = ref(localStorage.getItem('openai_api_key') || '')
+const settingsDialog = ref(false)
+const agentDialog = ref(false)
+const apiKeyDialog = ref(false)
+const msgContainer = ref(null)
 
 onMounted(() => {
   const storedAgents = localStorage.getItem('agents')
@@ -36,10 +58,22 @@ onMounted(() => {
   if (key) apiKey.value = key
 })
 
-watch([agents, messages], () => {
+watch([agents, apiKey], () => {
   localStorage.setItem('agents', JSON.stringify(agents.value))
+  if (apiKey.value) {
+    localStorage.setItem('openai_api_key', apiKey.value)
+  } else {
+    localStorage.removeItem('openai_api_key')
+  }
+}, { deep: true })
+
+watch(messages, () => {
   localStorage.setItem('conversation', JSON.stringify(messages.value))
-  if (apiKey.value) localStorage.setItem('openai_api_key', apiKey.value)
+  nextTick(() => {
+    if (msgContainer.value) {
+      msgContainer.value.scrollTop = msgContainer.value.scrollHeight
+    }
+  })
 }, { deep: true })
 
 function saveAgents(list) {

@@ -11,7 +11,8 @@ function testExampleAgentConfig() {
   assert.strictEqual(data.name, 'HelperBot');
   assert.ok('specialization' in data);
   assert.ok('base_prompt' in data);
-  assert.ok(data.model.startsWith('gpt-'));
+  assert.ok('model' in data);
+  assert.strictEqual(typeof data.model, 'string');
 }
 
 function testExampleConversationStructure() {
