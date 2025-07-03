@@ -28,6 +28,8 @@ function testFrontendPackageJson() {
   assert.ok(pkg.dependencies.vue);
   assert.ok(pkg.dependencies.vuetify);
   assert.ok(pkg.dependencies.openai);
+  assert.ok(pkg.devDependencies.vite.startsWith('^4'));
+  assert.ok(pkg.devDependencies['@vitejs/plugin-vue'].startsWith('^4'));
 }
 
 function testDeployWorkflow() {

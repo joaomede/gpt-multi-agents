@@ -29,7 +29,7 @@ avoiding overly long prompts.
 
 - `agents/` – JSON configuration files for the available personas.
 - `tests/` – automated tests run with `npm test`.
-- `frontend/` – Vue 3 application bootstrapped with Vite and styled with Vuetify.
+- `frontend/` – Vue 3 application bootstrapped with Vuetify and Vite 4.
 - `AGENTS.md` – repository guidelines and knowledge base.
 
 ## Front-End Components
@@ -88,7 +88,7 @@ An example conversation file can be found in `examples/example_conversation.json
 
 ## Front-End Setup
 
-The Vue 3 front-end lives in the `frontend/` directory and is configured with Vite and Vuetify for styling.
+The Vue 3 front-end lives in the `frontend/` directory and is configured with Vuetify and Vite. We pin Vite to the v4 release line for compatibility with `vite-plugin-vuetify`.
 To start a development server:
 
 ```bash
