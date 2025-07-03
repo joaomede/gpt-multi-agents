@@ -1,0 +1,7 @@
+{
+  "name": "gpt-multi-agents-root",
+  "private": true,
+  "scripts": {
+    "test": "node tests/test.js"
+  }
+}
