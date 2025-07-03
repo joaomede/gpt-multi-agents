@@ -6,7 +6,7 @@ This project builds a multi-agent contextual chatroom. Follow these guidelines w
 - Update `README.md` whenever user documentation or instructions change.
 - Store agent configuration files as JSON in the `agents/` directory.
 - Run tests using `npm test` before committing changes. Add or modify tests in `tests/` to cover new functionality.
-- The Vue 3 front-end is located in `frontend/` and bootstrapped with Vite 4 for compatibility with the Vuetify plugin. Vuetify provides styling and the OpenAI client library handles completions.
+- The Vue 3 front-end is located in `frontend/` and bootstrapped with Vite 4 for compatibility with the Vuetify plugin. Vuetify provides styling and the OpenAI client library handles completions. Material Design Icons are provided by the `@mdi/font` package and configured in `frontend/src/main.js`.
 - A GitHub Actions workflow (`.github/workflows/deploy.yml`) deploys the front-end to GitHub Pages for every commit pushed to a pull request.
   The workflow installs Node.js 22 so the build matches the expected runtime.
 

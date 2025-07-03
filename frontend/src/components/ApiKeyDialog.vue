@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>OpenAI API Key</v-card-title>
     <v-card-text>
-      <v-text-field v-model="key" label="API Key" />
+      <v-text-field v-model="key" label="API Key" class="w-100" />
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>

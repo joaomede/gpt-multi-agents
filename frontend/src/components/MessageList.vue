@@ -1,8 +1,10 @@
 <template>
   <v-list>
-    <v-list-item v-for="(msg, i) in messages" :key="i">
-      <strong>{{ msg.author }} {{ msg.specialization ? '(' + msg.specialization + ')' : '' }}:</strong>
-      {{ msg.content }}
+    <v-list-item v-for="(msg, i) in messages" :key="i" two-line>
+      <v-list-item-title class="font-weight-bold">
+        {{ msg.author }}{{ msg.specialization ? ' (' + msg.specialization + ')' : '' }}
+      </v-list-item-title>
+      <v-list-item-subtitle>{{ msg.content }}</v-list-item-subtitle>
     </v-list-item>
   </v-list>
 </template>

@@ -96,7 +96,7 @@ An example conversation file can be found in `examples/example_conversation.json
 
 ## Front-End Setup
 
-The Vue 3 front-end lives in the `frontend/` directory and is configured with Vuetify and Vite. We pin Vite to the v4 release line for compatibility with `vite-plugin-vuetify`. Development and CI use **Node.js 22**.
+The Vue 3 front-end lives in the `frontend/` directory and is configured with Vuetify and Vite. We pin Vite to the v4 release line for compatibility with `vite-plugin-vuetify`. The UI uses Material Design Icons via the `@mdi/font` package. Development and CI use **Node.js 22**.
 To start a development server:
 
 ```bash

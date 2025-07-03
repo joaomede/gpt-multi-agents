@@ -1,5 +1,6 @@
 <template>
   <v-select
+    class="w-100"
     :items="agents"
     item-title="name"
     return-object
