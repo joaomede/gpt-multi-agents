@@ -34,8 +34,8 @@ jobs:
     needs: build
 
     permissions:
-      pages: write      # Permite deploy no GitHub Pages
-      id-token: write   # Verifica a identidade do ambiente de execução
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
 
     environment:
       name: github-pages
