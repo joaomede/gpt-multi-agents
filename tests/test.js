@@ -30,15 +30,15 @@ function testFrontendPackageJson() {
   assert.ok(pkg.dependencies.vuetify);
   assert.ok(pkg.dependencies.openai);
   assert.ok(pkg.dependencies['@mdi/font']);
-  assert.ok(pkg.devDependencies.vite.startsWith('^4'));
-  assert.ok(pkg.devDependencies['@vitejs/plugin-vue'].startsWith('^4'));
+  assert.ok(pkg.devDependencies.vite.startsWith('^7'));
+  assert.ok(pkg.devDependencies['@vitejs/plugin-vue'].startsWith('^6'));
 }
 
 function testDeployWorkflow() {
   const workflow = path.join(__dirname, '..', '.github', 'workflows', 'deploy.yml');
   assert.ok(fs.existsSync(workflow), 'deploy.yml should exist');
   const content = fs.readFileSync(workflow, 'utf-8');
-  assert.ok(/actions-gh-pages/.test(content), 'workflow should deploy to gh-pages');
+  assert.ok(/deploy-pages@v4/.test(content), 'workflow should deploy to gh-pages');
 }
 
 try {

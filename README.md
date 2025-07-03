@@ -34,7 +34,7 @@ avoiding overly long prompts.
 
 - `agents/` – JSON configuration files for the available personas.
 - `tests/` – automated tests run with `npm test`.
-- `frontend/` – Vue 3 application bootstrapped with Vuetify and Vite 4.
+- `frontend/` – Vue 3 application bootstrapped with Vuetify and Vite 7.
 - `AGENTS.md` – repository guidelines and knowledge base.
 
 ## Front-End Components
@@ -44,8 +44,10 @@ The UI is composed of several Vue components:
 - **ChatRoom** – manages conversation state and brings everything together.
 - **AgentSelector** – choose which agent should answer next.
 - **MessageList** – displays the conversation history.
-- **AgentEditor** – create, edit or delete agent personas.
+- **AgentEditor** – create new agents or select existing ones to edit or delete with a save/cancel flow.
 - **SettingsPanel** – control how many previous messages are used as context.
+
+Dialogs are wrapped in Vuetify cards to avoid transparent backgrounds. The chatroom features a gradient background and animated Send button.
 
 ## Adding Agents
 
@@ -96,7 +98,7 @@ An example conversation file can be found in `examples/example_conversation.json
 
 ## Front-End Setup
 
-The Vue 3 front-end lives in the `frontend/` directory and is configured with Vuetify and Vite. We pin Vite to the v4 release line for compatibility with `vite-plugin-vuetify`. The UI uses Material Design Icons via the `@mdi/font` package. Development and CI use **Node.js 22**.
+The Vue 3 front-end lives in the `frontend/` directory and is configured with Vuetify and Vite. We use Vite 7 along with `@vitejs/plugin-vue` 6 for improved compatibility with Vue 3 and Vuetify. The UI uses Material Design Icons via the `@mdi/font` package. Development and CI use **Node.js 22**.
 To start a development server:
 
 ```bash

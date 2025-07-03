@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="fill-height d-flex flex-column pa-2">
+  <v-container fluid class="fill-height d-flex flex-column pa-2 chat-bg">
     <div class="d-flex align-center mb-2">
       <AgentSelector :agents="agents" v-model="selectedAgent" class="flex-grow-1" />
       <v-btn icon="mdi-key" @click="apiKeyDialog = true"></v-btn>
@@ -16,17 +16,23 @@
         class="flex-grow-1 w-100 mr-2"
         @keyup.enter="sendMessage"
       />
-      <v-btn color="primary" @click="sendMessage">Send</v-btn>
+      <v-btn color="primary" class="send-btn" @click="sendMessage">Send</v-btn>
     </div>
 
     <v-dialog v-model="settingsDialog" width="400">
-      <SettingsPanel v-model:history-size="historySize" />
+      <v-card>
+        <SettingsPanel v-model:history-size="historySize" />
+      </v-card>
     </v-dialog>
     <v-dialog v-model="agentDialog" width="600">
-      <AgentEditor :agents="agents" @update="saveAgents" />
+      <v-card>
+        <AgentEditor :agents="agents" @update="saveAgents" />
+      </v-card>
     </v-dialog>
     <v-dialog v-model="apiKeyDialog" width="400">
-      <ApiKeyDialog v-model="apiKey" @close="apiKeyDialog = false" />
+      <v-card>
+        <ApiKeyDialog v-model="apiKey" @close="apiKeyDialog = false" />
+      </v-card>
     </v-dialog>
   </v-container>
 </template>
@@ -117,3 +123,17 @@ async function sendMessage() {
   newMessage.value = ''
 }
 </script>
+
+<style scoped>
+.chat-bg {
+  background: linear-gradient(180deg, #fafafa, #e0e0ff);
+}
+
+.send-btn {
+  transition: background-color 0.2s;
+}
+
+.send-btn:hover {
+  background-color: #1976d2 !important;
+}
+</style>

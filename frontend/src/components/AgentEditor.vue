@@ -4,6 +4,7 @@
     <v-list>
       <v-list-item v-for="(agent, i) in list" :key="i">
         {{ agent.name }} - {{ agent.specialization }}
+        <v-btn icon="mdi-pencil" size="x-small" class="mr-1" @click="edit(i)"></v-btn>
         <v-btn icon="mdi-delete" size="x-small" @click="remove(i)"></v-btn>
       </v-list-item>
     </v-list>
@@ -11,7 +12,10 @@
     <v-text-field v-model="specialization" label="Specialization" class="w-100 mb-2" />
     <v-textarea v-model="prompt" label="Base Prompt" class="w-100 mb-2" />
     <v-select v-model="model" :items="models" label="Model" class="w-100 mb-2" />
-    <v-btn color="primary" @click="add">Add Agent</v-btn>
+    <div class="d-flex gap-2">
+      <v-btn color="primary" @click="save">{{ editingIndex >= 0 ? 'Save Agent' : 'Add Agent' }}</v-btn>
+      <v-btn v-if="editingIndex >= 0" @click="cancelEdit">Cancel</v-btn>
+    </div>
   </div>
 </template>
 
@@ -53,12 +57,33 @@ const name = ref('')
 const specialization = ref('')
 const prompt = ref('')
 const model = ref('gpt-4o')
+const editingIndex = ref(-1)
 
-function add() {
+function edit(i) {
+  const agent = list.value[i]
+  name.value = agent.name
+  specialization.value = agent.specialization
+  prompt.value = agent.base_prompt
+  model.value = agent.model
+  editingIndex.value = i
+}
+
+function save() {
   if (!name.value) return
-  list.value.push({ name: name.value, specialization: specialization.value, base_prompt: prompt.value, model: model.value })
+  const data = { name: name.value, specialization: specialization.value, base_prompt: prompt.value, model: model.value }
+  if (editingIndex.value >= 0) {
+    list.value.splice(editingIndex.value, 1, data)
+  } else {
+    list.value.push(data)
+  }
   emit('update', list.value)
+  cancelEdit()
+}
+
+function cancelEdit() {
+  editingIndex.value = -1
   name.value = specialization.value = prompt.value = ''
+  model.value = 'gpt-4o'
 }
 
 function remove(i) {
@@ -66,3 +91,9 @@ function remove(i) {
   emit('update', list.value)
 }
 </script>
+
+<style scoped>
+.gap-2 > * {
+  margin-right: 0.5rem;
+}
+</style>
