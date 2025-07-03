@@ -35,9 +35,11 @@ Agent JSON files must include a `name`, `specialization`, `base_prompt` and `mod
   from buttons in a left sidebar that also holds the agent selector. The sidebar
   now occupies one quarter of the page width so the chat area remains focused.
   All dialogs contain a single Vuetify card for consistent alignment and the
-  message input uses an auto-growing textarea.
+  message input uses Vuetify's auto-growing `v-textarea`. Users can press Enter
+  to send a message or Shift+Enter to insert a newline for multi-line prompts.
   The `SettingsPanel` dialog includes a **Save** button that confirms the history
-  length and closes the dialog.
+  length and closes the dialog. The chosen history length is saved to
+  `localStorage` under the key `history_size` so it persists across page refreshes.
   Global padding was removed from `App.vue` so the chat area uses the full
   viewport height; minimal margins are applied with Vuetify utility classes.
 

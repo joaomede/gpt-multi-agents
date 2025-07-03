@@ -54,6 +54,7 @@ The UI is composed of several Vue components:
 - **SettingsPanel** – control how many previous messages are used as context. Use the **Save** button to apply the new value and close the dialog.
 
 Dialogs are wrapped in Vuetify cards to avoid transparent backgrounds. The chatroom features a gradient background and animated Send button.
+The message input uses Vuetify's auto-growing `v-textarea` so you can write multi-line prompts. Press **Enter** to send and **Shift+Enter** to insert a newline.
 
 ## Adding Agents
 
@@ -93,6 +94,7 @@ agent sees the previous responses so it can answer in context:
 ## Caching and Conversation Storage
 
 Agents and conversations are stored locally in the browser's `localStorage`.
+The chosen history length is also persisted under the key `history_size` so it survives page refreshes.
 Each conversation is represented as an array of message blocks containing:
 
 - `author` – the user or agent name
