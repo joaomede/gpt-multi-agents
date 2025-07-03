@@ -50,7 +50,10 @@
     </v-row>
 
     <v-dialog v-model="settingsDialog" width="400">
-      <SettingsPanel v-model:history-size="historySize" />
+      <SettingsPanel
+        v-model:history-size="historySize"
+        @close="settingsDialog = false"
+      />
     </v-dialog>
     <v-dialog v-model="agentDialog" width="600">
       <AgentEditor :agents="agents" @update="saveAgents" />
