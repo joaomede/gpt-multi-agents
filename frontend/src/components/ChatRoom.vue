@@ -6,7 +6,7 @@
       <v-btn icon="mdi-cog" @click="settingsDialog = true"></v-btn>
       <v-btn icon="mdi-account-cog" @click="agentDialog = true"></v-btn>
     </div>
-    <div class="flex-grow-1 overflow-auto">
+    <div class="flex-grow-1 overflow-auto" ref="msgContainer">
       <MessageList :messages="messages" />
     </div>
     <div class="d-flex mt-2">
@@ -21,13 +21,13 @@
       <AgentEditor :agents="agents" @update="saveAgents" />
     </v-dialog>
     <v-dialog v-model="apiKeyDialog" width="400">
-      <ApiKeyDialog v-model="apiKey" />
+      <ApiKeyDialog v-model="apiKey" @close="apiKeyDialog = false" />
     </v-dialog>
   </v-container>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import { callOpenAI } from '../openai.js'
 import AgentSelector from './AgentSelector.vue'
 import MessageList from './MessageList.vue'
@@ -46,6 +46,7 @@ const apiKey = ref(localStorage.getItem('openai_api_key') || '')
 const settingsDialog = ref(false)
 const agentDialog = ref(false)
 const apiKeyDialog = ref(false)
+const msgContainer = ref(null)
 
 onMounted(() => {
   const storedAgents = localStorage.getItem('agents')
@@ -57,14 +58,22 @@ onMounted(() => {
   if (key) apiKey.value = key
 })
 
-watch([agents, messages, apiKey], () => {
+watch([agents, apiKey], () => {
   localStorage.setItem('agents', JSON.stringify(agents.value))
-  localStorage.setItem('conversation', JSON.stringify(messages.value))
   if (apiKey.value) {
     localStorage.setItem('openai_api_key', apiKey.value)
   } else {
     localStorage.removeItem('openai_api_key')
   }
+}, { deep: true })
+
+watch(messages, () => {
+  localStorage.setItem('conversation', JSON.stringify(messages.value))
+  nextTick(() => {
+    if (msgContainer.value) {
+      msgContainer.value.scrollTop = msgContainer.value.scrollHeight
+    }
+  })
 }, { deep: true })
 
 function saveAgents(list) {

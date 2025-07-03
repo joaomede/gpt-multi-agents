@@ -12,10 +12,12 @@
 </template>
 
 <script setup>
-import { ref, defineModel } from 'vue'
+import { ref, defineModel, defineEmits } from 'vue'
+const emit = defineEmits(['close'])
 const modelValue = defineModel()
 const key = ref(modelValue.value || '')
 function save() {
   modelValue.value = key.value
+  emit('close')
 }
 </script>

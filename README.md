@@ -14,7 +14,8 @@ This history allows every reply to remain context aware and continuous.
 The application exposes a single chatroom interface. A user selects which agent
 should respond via a dropdown or similar selector. Each response shows the
 agent name, its specialization and the message content. The chatroom fills the
-entire page and the message list scrolls as the conversation grows. All agents can see the
+entire page and the message list scrolls as the conversation grows, automatically
+jumping to the latest message. All agents can see the
 entire conversation history so they can provide contextual answers.
 
 Users may also manage agents through the front-end UI. New personas can be

@@ -14,7 +14,8 @@ Agent JSON files must include a `name`, `specialization`, `base_prompt` and `mod
 ## Architecture Notes
 
 - A single chatroom interface allows the user to select which agent responds.
-- A single chatroom interface fills the browser viewport and scrolls as needed.
+- A single chatroom interface fills the browser viewport and scrolls as needed,
+  automatically jumping to the newest message.
 - Every agent sees the full conversation history to maintain context.
 - Messages display the agent name, specialization and content.
 - The UI offers a numeric control to limit how many recent message blocks are
