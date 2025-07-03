@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="fill-height pa-2 chat-bg">
-    <v-row class="fill-height">
-      <v-col cols="4" class="d-flex flex-column pa-2">
+    <v-row class="h-100" align="start">
+      <v-col cols="3" class="d-flex flex-column pa-2">
         <AgentSelector
           :agents="agents"
           v-model="selectedAgent"
@@ -30,7 +30,7 @@
           @click="agentDialog = true"
         >Agents</v-btn>
       </v-col>
-      <v-col cols="8" class="d-flex flex-column pa-2">
+      <v-col cols="9" class="d-flex flex-column pa-2 h-100">
         <div class="flex-grow-1 overflow-auto mb-2" ref="msgContainer">
           <MessageList :messages="messages" />
         </div>
@@ -50,19 +50,13 @@
     </v-row>
 
     <v-dialog v-model="settingsDialog" width="400">
-      <v-card>
-        <SettingsPanel v-model:history-size="historySize" />
-      </v-card>
+      <SettingsPanel v-model:history-size="historySize" />
     </v-dialog>
     <v-dialog v-model="agentDialog" width="600">
-      <v-card>
-        <AgentEditor :agents="agents" @update="saveAgents" />
-      </v-card>
+      <AgentEditor :agents="agents" @update="saveAgents" />
     </v-dialog>
     <v-dialog v-model="apiKeyDialog" width="400">
-      <v-card>
-        <ApiKeyDialog v-model="apiKey" @close="apiKeyDialog = false" />
-      </v-card>
+      <ApiKeyDialog v-model="apiKey" @close="apiKeyDialog = false" />
     </v-dialog>
   </v-container>
 </template>

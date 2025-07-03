@@ -16,13 +16,14 @@ should respond via a dropdown or similar selector. Each response shows the
 agent name, its specialization and the message content. The chatroom fills the
 entire page and the message list scrolls as the conversation grows, automatically
 jumping to the latest message. All agents can see the
-entire conversation history so they can provide contextual answers.
+entire conversation history so they can provide contextual answers. User
+questions are typed into a growing text area for comfortable multi-line input.
 
 Users may also manage agents through the front-end UI. New personas can be
 added or existing ones edited and deleted without restarting the application.
 Each agent definition includes a base prompt describing how it should behave.
 Agent management and other settings are accessed from buttons in a left sidebar
-that also contains the agent selector. The sidebar takes up one third of the
+that also contains the agent selector. The sidebar occupies one quarter of the
 page width. Buttons open dialogs for history settings, agent editing and API
 key configuration.
 

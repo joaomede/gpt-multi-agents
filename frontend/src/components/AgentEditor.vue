@@ -1,22 +1,24 @@
 <template>
-  <div>
-    <h3>Agents</h3>
-    <v-list>
-      <v-list-item v-for="(agent, i) in list" :key="i">
-        {{ agent.name }} - {{ agent.specialization }}
-        <v-btn icon="mdi-pencil" size="x-small" class="mr-1" rounded="lg" @click="edit(i)"></v-btn>
-        <v-btn icon="mdi-delete" size="x-small" rounded="lg" @click="remove(i)"></v-btn>
-      </v-list-item>
-    </v-list>
-    <v-text-field v-model="name" label="Name" class="w-100 mb-2" rounded="lg" />
-    <v-text-field v-model="specialization" label="Specialization" class="w-100 mb-2" rounded="lg" />
-    <v-textarea v-model="prompt" label="Base Prompt" class="w-100 mb-2" rounded="lg" />
-    <v-select v-model="model" :items="models" label="Model" class="w-100 mb-2" rounded="lg" />
-    <div class="d-flex gap-2">
+  <v-card>
+    <v-card-title class="text-h6">Agents</v-card-title>
+    <v-card-text>
+      <v-list>
+        <v-list-item v-for="(agent, i) in list" :key="i">
+          {{ agent.name }} - {{ agent.specialization }}
+          <v-btn icon="mdi-pencil" size="x-small" class="mr-1" rounded="lg" @click="edit(i)"></v-btn>
+          <v-btn icon="mdi-delete" size="x-small" rounded="lg" @click="remove(i)"></v-btn>
+        </v-list-item>
+      </v-list>
+      <v-text-field v-model="name" label="Name" class="w-100 mb-2" rounded="lg" />
+      <v-text-field v-model="specialization" label="Specialization" class="w-100 mb-2" rounded="lg" />
+      <v-textarea v-model="prompt" label="Base Prompt" class="w-100 mb-2" rounded="lg" />
+      <v-select v-model="model" :items="models" label="Model" class="w-100 mb-2" rounded="lg" />
+    </v-card-text>
+    <v-card-actions class="gap-2">
       <v-btn color="primary" rounded="lg" @click="save">{{ editingIndex >= 0 ? 'Save Agent' : 'Add Agent' }}</v-btn>
       <v-btn v-if="editingIndex >= 0" rounded="lg" @click="cancelEdit">Cancel</v-btn>
-    </div>
-  </div>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script setup>

@@ -32,5 +32,7 @@ Agent JSON files must include a `name`, `specialization`, `base_prompt` and `mod
   `AgentSelector`, `MessageList`, `AgentEditor`, `SettingsPanel` and `ApiKeyDialog`.
   Agent management, settings and API key editing are presented in dialogs opened
   from buttons in a left sidebar that also holds the agent selector. The sidebar
-  occupies one third of the page width so the chat area remains focused.
+  now occupies one quarter of the page width so the chat area remains focused.
+  All dialogs contain a single Vuetify card for consistent alignment and the
+  message input uses an auto-growing textarea.
 
