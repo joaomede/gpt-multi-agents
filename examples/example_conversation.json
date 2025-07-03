@@ -1,0 +1,14 @@
+[
+  {
+    "author": "user",
+    "specialization": "",
+    "content": "Which channels would be most effective for product X?",
+    "timestamp": "2025-07-01T10:00:00Z"
+  },
+  {
+    "author": "Agent Alex",
+    "specialization": "Finance",
+    "content": "Product X targets a high-income audience, suggesting segmented campaigns on LinkedIn and Google Ads.",
+    "timestamp": "2025-07-01T10:00:05Z"
+  }
+]

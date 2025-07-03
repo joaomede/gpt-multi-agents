@@ -1,0 +1,6 @@
+{
+  "name": "HelperBot",
+  "specialization": "general knowledge",
+  "base_prompt": "You are a friendly assistant who answers briefly.",
+  "model": "gpt-3.5-turbo"
+}
