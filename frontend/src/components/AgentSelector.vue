@@ -3,19 +3,17 @@
     :items="agents"
     item-title="name"
     return-object
-    v-model="modelValue"
+    :model-value="modelValue"
+    @update:model-value="emit('update:modelValue', $event)"
     label="Select Agent"
   ></v-select>
 </template>
 
 <script setup>
-import { watch, defineProps, defineEmits } from 'vue'
-
 const props = defineProps({
   agents: Array,
   modelValue: Object
 })
-const emit = defineEmits(['update:modelValue'])
 
-watch(() => props.modelValue, v => emit('update:modelValue', v))
+const emit = defineEmits(['update:modelValue'])
 </script>
