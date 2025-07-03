@@ -8,9 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '22'
 
@@ -19,29 +21,29 @@ jobs:
           npm install
           cd frontend && npm install
 
-      - name: Build frontend
+      - name: Build static files
         run: |
           cd frontend
           npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload static files as artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./frontend/dist
+          path: frontend/dist
 
-  # Deploy job
+  # Deployment job
   deploy:
     needs: build
+    runs-on: ubuntu-latest
 
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      pages: write
+      id-token: write
 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
