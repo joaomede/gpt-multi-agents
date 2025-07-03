@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-text-field type="number" v-model.number="history" label="History Size" class="w-100" />
+    <v-text-field type="number" v-model.number="history" label="History Size" class="w-100" rounded="lg" />
   </div>
 </template>
 

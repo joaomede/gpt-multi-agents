@@ -31,5 +31,6 @@ Agent JSON files must include a `name`, `specialization`, `base_prompt` and `mod
 - Vuetify components provide the UI with the following structure: `ChatRoom`,
   `AgentSelector`, `MessageList`, `AgentEditor`, `SettingsPanel` and `ApiKeyDialog`.
   Agent management, settings and API key editing are presented in dialogs opened
-  from icons in the chatroom header so the interface stays uncluttered.
+  from buttons in a left sidebar that also holds the agent selector. The sidebar
+  occupies one third of the page width so the chat area remains focused.
 
