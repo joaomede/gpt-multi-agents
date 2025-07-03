@@ -1,5 +1,7 @@
 # gpt-multi-agents
 
+[🌐 Live Demo](https://joaomede.github.io/gpt-multi-agents/)
+
 ## Core Objective
 
 Build a multi-agent contextual chatroom where a user can interact with multiple configured agents (personas). The user chooses which agent responds to each question. Every agent receives the entire conversation history, including:
@@ -25,7 +27,9 @@ Each agent definition includes a base prompt describing how it should behave.
 Agent management and other settings are accessed from buttons in a left sidebar
 that also contains the agent selector. The sidebar occupies one quarter of the
 page width. Buttons open dialogs for history settings, agent editing and API
-key configuration.
+key configuration. The gear icon opens the Settings dialog where you can choose
+how many recent messages are used as context; click **Save** to confirm your
+change.
 
 To keep conversations concise, the UI exposes a numeric control that limits the
 amount of history sent to the LLM. Only the last *N* message blocks (user
@@ -47,7 +51,7 @@ The UI is composed of several Vue components:
 - **AgentSelector** – choose which agent should answer next.
 - **MessageList** – displays the conversation history.
 - **AgentEditor** – create new agents or select existing ones to edit or delete with a save/cancel flow.
-- **SettingsPanel** – control how many previous messages are used as context.
+- **SettingsPanel** – control how many previous messages are used as context. Use the **Save** button to apply the new value and close the dialog.
 
 Dialogs are wrapped in Vuetify cards to avoid transparent backgrounds. The chatroom features a gradient background and animated Send button.
 

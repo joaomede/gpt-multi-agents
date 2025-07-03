@@ -9,6 +9,7 @@ This project builds a multi-agent contextual chatroom. Follow these guidelines w
 - The Vue 3 front-end is located in `frontend/` and bootstrapped with Vite 7 and `@vitejs/plugin-vue` 6 for compatibility with the Vuetify plugin. Vuetify provides styling and the OpenAI client library handles completions. Material Design Icons are provided by the `@mdi/font` package and configured in `frontend/src/main.js`. Dialogs are wrapped in Vuetify cards to avoid transparent backgrounds.
 - A GitHub Actions workflow (`.github/workflows/deploy.yml`) deploys the front-end to GitHub Pages for every commit pushed to a pull request.
   The workflow installs Node.js 22 so the build matches the expected runtime.
+- The README links to the deployed site at <https://joaomede.github.io/gpt-multi-agents/>.
 
 Agent JSON files must include a `name`, `specialization`, `base_prompt` and `model` field. The `model` value is chosen from a predefined list in the Agent Editor. Supported options include `gpt-4o`, `gpt-4.1`, `o1-pro` and others. The front-end UI allows users to add, edit or delete these agent personas at runtime. Existing agents can be selected and updated using the same form that adds new ones.
 
@@ -35,4 +36,8 @@ Agent JSON files must include a `name`, `specialization`, `base_prompt` and `mod
   now occupies one quarter of the page width so the chat area remains focused.
   All dialogs contain a single Vuetify card for consistent alignment and the
   message input uses an auto-growing textarea.
+  The `SettingsPanel` dialog includes a **Save** button that confirms the history
+  length and closes the dialog.
+  Global padding was removed from `App.vue` so the chat area uses the full
+  viewport height; minimal margins are applied with Vuetify utility classes.
 

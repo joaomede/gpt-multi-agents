@@ -1,5 +1,5 @@
 <template>
-  <v-app class="fill-height d-flex flex-column">
+<v-app class="fill-height d-flex flex-column ma-2">
     <h1 class="my-2">GPT Multi Agents Chatroom</h1>
     <ChatRoom class="flex-grow-1" />
   </v-app>
@@ -12,7 +12,6 @@ import ChatRoom from './components/ChatRoom.vue'
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  padding: 2rem;
 }
 html, body, #app {
   height: 100%;
