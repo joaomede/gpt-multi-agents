@@ -7,10 +7,10 @@
         <v-btn icon="mdi-delete" size="x-small" @click="remove(i)"></v-btn>
       </v-list-item>
     </v-list>
-    <v-text-field v-model="name" label="Name" />
-    <v-text-field v-model="specialization" label="Specialization" />
-    <v-textarea v-model="prompt" label="Base Prompt" />
-    <v-select v-model="model" :items="models" label="Model" />
+    <v-text-field v-model="name" label="Name" class="w-100 mb-2" />
+    <v-text-field v-model="specialization" label="Specialization" class="w-100 mb-2" />
+    <v-textarea v-model="prompt" label="Base Prompt" class="w-100 mb-2" />
+    <v-select v-model="model" :items="models" label="Model" class="w-100 mb-2" />
     <v-btn color="primary" @click="add">Add Agent</v-btn>
   </div>
 </template>

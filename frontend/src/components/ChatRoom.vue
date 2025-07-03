@@ -1,16 +1,21 @@
 <template>
-  <v-container class="fill-height d-flex flex-column">
+  <v-container fluid class="fill-height d-flex flex-column pa-2">
     <div class="d-flex align-center mb-2">
       <AgentSelector :agents="agents" v-model="selectedAgent" class="flex-grow-1" />
       <v-btn icon="mdi-key" @click="apiKeyDialog = true"></v-btn>
       <v-btn icon="mdi-cog" @click="settingsDialog = true"></v-btn>
       <v-btn icon="mdi-account-cog" @click="agentDialog = true"></v-btn>
     </div>
-    <div class="flex-grow-1 overflow-auto" ref="msgContainer">
+    <div class="flex-grow-1 overflow-auto mb-2" ref="msgContainer">
       <MessageList :messages="messages" />
     </div>
     <div class="d-flex mt-2">
-      <v-text-field v-model="newMessage" label="Your question" class="flex-grow-1" @keyup.enter="sendMessage" />
+      <v-text-field
+        v-model="newMessage"
+        label="Your question"
+        class="flex-grow-1 w-100 mr-2"
+        @keyup.enter="sendMessage"
+      />
       <v-btn color="primary" @click="sendMessage">Send</v-btn>
     </div>
 
