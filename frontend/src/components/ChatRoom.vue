@@ -41,6 +41,8 @@
             class="flex-grow-1 w-100 mr-2"
             auto-grow
             rows="1"
+            max-rows="5"
+            clearable
             rounded="lg"
             @keydown.enter.exact.prevent="sendMessage"
           />
@@ -90,10 +92,12 @@ onMounted(() => {
   const storedAgents = localStorage.getItem('agents')
   const storedMessages = localStorage.getItem('conversation')
   const key = localStorage.getItem('openai_api_key')
+  const storedHistory = localStorage.getItem('history_size')
   if (storedAgents) agents.value = JSON.parse(storedAgents)
   if (agents.value.length > 0) selectedAgent.value = agents.value[0]
   if (storedMessages) messages.value = JSON.parse(storedMessages)
   if (key) apiKey.value = key
+  if (storedHistory) historySize.value = parseInt(storedHistory)
 })
 
 watch([agents, apiKey], () => {
@@ -113,6 +117,10 @@ watch(messages, () => {
     }
   })
 }, { deep: true })
+
+watch(historySize, value => {
+  localStorage.setItem('history_size', value)
+})
 
 function saveAgents(list) {
   agents.value = list
