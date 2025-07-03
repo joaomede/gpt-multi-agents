@@ -8,6 +8,7 @@ This project builds a multi-agent contextual chatroom. Follow these guidelines w
 - Run tests using `npm test` before committing changes. Add or modify tests in `tests/` to cover new functionality.
 - The Vue 3 front-end is located in `frontend/` and bootstrapped with Vite 4 for compatibility with the Vuetify plugin. Vuetify provides styling and the OpenAI client library handles completions.
 - A GitHub Actions workflow (`.github/workflows/deploy.yml`) deploys the front-end to GitHub Pages for every commit pushed to a pull request.
+  The workflow installs Node.js 22 so the build matches the expected runtime.
 
 Agent JSON files must include a `name`, `specialization`, `base_prompt` and `model` field. The `model` value is chosen from a predefined list in the Agent Editor. Supported options include `gpt-4o`, `gpt-4.1`, `o1-pro` and others. The front-end UI allows users to add, edit or delete these agent personas at runtime.
 

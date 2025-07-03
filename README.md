@@ -96,7 +96,7 @@ An example conversation file can be found in `examples/example_conversation.json
 
 ## Front-End Setup
 
-The Vue 3 front-end lives in the `frontend/` directory and is configured with Vuetify and Vite. We pin Vite to the v4 release line for compatibility with `vite-plugin-vuetify`.
+The Vue 3 front-end lives in the `frontend/` directory and is configured with Vuetify and Vite. We pin Vite to the v4 release line for compatibility with `vite-plugin-vuetify`. Development and CI use **Node.js 22**.
 To start a development server:
 
 ```bash
@@ -123,4 +123,5 @@ Every new feature should include tests to ensure correct behavior. The tests ver
 ## Continuous Deployment
 
 Each commit pushed to a pull request triggers a GitHub Actions workflow that runs the tests, builds the Vue front end and deploys the resulting `frontend/dist` directory to GitHub Pages. See `.github/workflows/deploy.yml` for the full configuration.
+The workflow installs **Node.js 22** to match local development.
 
